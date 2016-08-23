@@ -10,6 +10,7 @@
       <!--bootstrap v3.3.4-->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+      <script src="scripts/components/preloader.js"></script>
   </head>
 
   <body>
@@ -62,7 +63,7 @@
               </div>
           </div>
           <!--data-spy="affix" data-offset-top="900"-->
-        <div class="row banner-full-width" data-spy="affix" data-offset-top="900">
+        <div class="row banner-full-width" data-spy="affix" data-smart-affix>
               <div class="container">
                   <div class="carousel slide " id="carousel-full-width">
                       <div class="carousel-inner">
@@ -241,9 +242,8 @@
 
 
   <script src="scripts/vendor/jquery-1.11.3.min.js"></script>
-  <script src="scripts/components/preloader.js"></script>
-  <!-- Bootstrap core CSS -->
-    <script src="scripts/vendor/bootstrap.min.js"></script>
+  <!-- Bootstrap core JS -->
+  <script src="scripts/vendor/bootstrap.min.js"></script>
     <script src="scripts/components/carousel.js"></script>
     <script>
       document.body.innerHTML = document.body.innerHTML.replace(/\і/g, 'i');//replace ukr 'i' to us 'i'
@@ -257,11 +257,25 @@
       function checkZIndex(){
           toggleCount++;
           $navbarTop.css({'z-index': '10'});
-
           if ($btnelemToStick.hasClass('collapsed') || toggleCount % 2)
               $navbarTop.css({'z-index': '20'});
-
       };
+
+
+      //* set dynamic data-offset values affix banner*/
+      var $attribute = $('[data-smart-affix]');
+      $attribute.each(function(){
+          $(this).affix({
+              offset: {
+                  top: $(this).offset().top,
+              }
+          })
+      })
+      $(window).on("resize", function(){
+          $attribute.each(function(){
+              $(this).data('bs.affix').options.offset = $(this).offset().top
+          })
+      })
 
     </script>
 
