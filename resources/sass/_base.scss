@@ -122,6 +122,9 @@ button {
   &-first{
     background-image: url("../assets/img/bg-banner01.jpg");
     overflow: visible;
+    @media (min-width: 320px) and (max-width: 812px){
+      min-height: $height-banner-mobile;
+    }
     .col-md-6 {
       padding-right: 90px;
       min-width: 780px;
@@ -154,12 +157,25 @@ button {
 
       }
       &--hero {
-        left: 220px;
+        left: 17%;
         @media (min-width: 1390px) {
           left: initial;
         }
-        @media (min-width: 320px) and (max-width: 767px){
+        @media (min-width: 320px) and (max-width: 380px){
+          left: -350px;
+        }
+        @media (min-width: 381px) and (max-width: 480px){
+          left: -280px;
+        }
+        @media (min-width: 481px) and (max-width: 610px){
+          left: -200px;
+        }
+        @media (min-width: 611px) and (max-width: 812px){
           left: -130px;
+          transform: scale(0.75);
+          bottom: -74px;
+        }
+        @media (min-width: 320px) and (max-width: 812px){
           transform: scale(0.75);
           bottom: -74px;
         }
